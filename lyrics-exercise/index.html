@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampson's Lyrics Exercise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000000;
+            padding: 40px;
+            border: 2px solid #ffffff;
+        }
+
+        .song-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 20px;
+        }
+
+        .song-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .artist-name {
+            font-size: 1.5em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .song-info {
+            font-size: 0.9em;
+            color: #ffffff;
+        }
+
+        .lyrics-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .verse, .pre-chorus, .outro {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #000000;
+            border: 1px solid #ffffff;
+            user-select: text;
+            cursor: text;
+        }
+
+        .chorus {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #ffffff;
+            color: #000000;
+            font-weight: 500;
+            user-select: text;
+            cursor: text;
+        }
+
+        .section-label {
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .chorus .section-label {
+            color: #000000;
+        }
+
+        .line {
+            margin-bottom: 8px;
+            cursor: text;
+            user-select: text;
+        }
+
+        .highlighted {
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .copyright-notice {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ffffff;
+            font-size: 0.8em;
+            color: #ffffff;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .song-title {
+                font-size: 2em;
+            }
+            
+            .artist-name {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="song-header">
+            <h1 class="song-title">Do I Wanna Know?</h1>
+            <h2 class="artist-name">Arctic Monkeys</h2>
+            <div class="song-info">
+                Track 1 on AM • Released June 18, 2013<br>
+                Producers: Ross Orton & James Ford
+            </div>
+        </header>
+
+        <div class="lyrics-content">
+            <div class="verse">
+                <div class="section-label">Verse 1</div>
+                <div class="line">Have you got colour in your cheeks?</div>
+                <div class="line">Do you ever get that fear that you can't shift the type</div>
+                <div class="line">That sticks around like summat in your teeth?</div>
+                <div class="line">Are there some aces up your sleeve?</div>
+                <div class="line">Have you no idea that you're in deep?</div>
+                <div class="line">I've dreamt about you nearly every night this week</div>
+                <div class="line">How many secrets can you keep?</div>
+                <div class="line">'Cause there's this tune I found</div>
+                <div class="line">That makes me think of you somehow an' I play it on repeat</div>
+                <div class="line">Until I fall asleep, spillin' drinks on my settee</div>
+            </div>
+
+            <div class="pre-chorus">
+                <div class="section-label">Pre-Chorus</div>
+                <div class="line">(Do I wanna know?) If this feelin' flows both ways?</div>
+                <div class="line">(Sad to see you go) Was sorta hopin' that you'd stay</div>
+                <div class="line">(Baby, we both know) That the nights were mainly made</div>
+                <div class="line">For sayin' things that you can't say tomorrow day</div>
+            </div>
+
+            <div class="chorus">
+                <div class="section-label">Chorus</div>
+                <div class="line">Crawlin' back to you</div>
+                <div class="line">Ever thought of callin' when</div>
+                <div class="line">You've had a few?</div>
+                <div class="line">'Cause I always do</div>
+                <div class="line">Maybe I'm too</div>
+                <div class="line">Busy bein' yours</div>
+                <div class="line">To fall for somebody new</div>
+                <div class="line">Now, I've thought it through</div>
+                <div class="line">Crawlin' back to you</div>
+            </div>
+
+            <div class="verse">
+                <div class="section-label">Verse 2</div>
+                <div class="line">So have you got the guts?</div>
+                <div class="line">Been wonderin' if your heart's still open</div>
+                <div class="line">And if so, I wanna know what time it shuts</div>
+                <div class="line">Simmer down an' pucker up, I'm sorry to interrupt</div>
+                <div class="line">It's just I'm constantly on the cusp of tryin' to kiss you</div>
+                <div class="line">But I don't know if you feel the same as I do</div>
+                <div class="line">But we could be together if you wanted to</div>
+            </div>
+
+            <div class="pre-chorus">
+                <div class="section-label">Pre-Chorus</div>
+                <div class="line">(Do I wanna know?) If this feelin' flows both ways?</div>
+                <div class="line">(Sad to see you go) Was sorta hopin' that you'd stay</div>
+                <div class="line">(Baby, we both know) That the nights were mainly made</div>
+                <div class="line">For sayin' things that you can't say tomorrow day</div>
+            </div>
+
+            <div class="chorus">
+                <div class="section-label">Chorus</div>
+                <div class="line">Crawlin' back to you (Crawlin' back to you)</div>
+                <div class="line">Ever thought of callin' when</div>
+                <div class="line">You've had a few? (You've had a few)</div>
+                <div class="line">'Cause I always do ('Cause I always do)</div>
+                <div class="line">Maybe I'm too (Maybe I'm too busy)</div>
+                <div class="line">Busy bein' yours (Bein' yours)</div>
+                <div class="line">To fall for somebody new</div>
+                <div class="line">Now, I've thought it through</div>
+                <div class="line">Crawlin' back to you</div>
+            </div>
+
+            <div class="outro">
+                <div class="section-label">Outro</div>
+                <div class="line">(Do I wanna know?) If this feelin' flows both ways?</div>
+                <div class="line">(Sad to see you go) Was sorta hopin' that you'd stay</div>
+                <div class="line">(Baby, we both know) That the nights were mainly made</div>
+                <div class="line">For sayin' things that you can't say tomorrow day</div>
+                <div class="line">(Do I wanna know?) Too busy bein' yours to fall</div>
+                <div class="line">(Sad to see you go) Ever thought of callin', darlin'?</div>
+                <div class="line">(Do I wanna know?) Do you want me crawlin' back to you?</div>
+            </div>
+        </div>
+
+        <div class="copyright-notice">
+            © Arctic Monkeys • All rights reserved
+        </div>
+    </div>
+</body>
+</html>

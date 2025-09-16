@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampson's Type Styling Exercise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            background: #ffffff;
+        }
+
+        .masthead {
+            background: #000000;
+            color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .masthead::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #000 0px,
+                #000 40px,
+                #fff 40px,
+                #fff 80px
+            );
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .spec-info {
+            background: #000000;
+            color: #ffffff;
+            padding: 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-top: 4px solid #ffffff;
+            border-bottom: 4px solid #ffffff;
+        }
+
+        .main-content {
+            background: #ffffff;
+        }
+
+        .specimen-block {
+            border-bottom: 4px solid #000000;
+            background: #ffffff;
+        }
+
+        .specimen-header {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 30px 20px;
+            position: relative;
+        }
+
+        .specimen-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+
+        .specimen-body {
+            padding: 40px 30px 60px;
+        }
+
+        .test-case {
+            margin-bottom: 35px;
+            border-left: 8px solid #000000;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .test-case::before {
+            content: attr(data-value);
+            position: absolute;
+            left: -8px;
+            top: -25px;
+            background: #000000;
+            color: #ffffff;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .specimen-text {
+            font-size: 1.3rem;
+            color: #000000;
+            margin-top: 35px;
+            line-height: 1.5;
+        }
+
+        /* Typography Classes */
+        .w400 { font-weight: 400; }
+        .w600 { font-weight: 600; }
+        .w700 { font-weight: 700; }
+
+        .sn { font-style: normal; }
+        .si { font-style: italic; }
+
+        .lt { letter-spacing: -1px; }
+        .ln { letter-spacing: normal; }
+        .lw { letter-spacing: 2px; }
+        .lww { letter-spacing: 5px; }
+        .lwww { letter-spacing: 10px; }
+
+        .tn { text-transform: none; }
+        .tu { text-transform: uppercase; }
+        .tl { text-transform: lowercase; }
+        .tc { text-transform: capitalize; }
+
+        .dn { text-decoration: none; }
+        .du { text-decoration: underline; }
+        .do { text-decoration: overline; }
+        .dt { text-decoration: line-through; }
+        .dw { text-decoration: underline wavy; }
+
+        .closing {
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px 30px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .closing::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #fff 0px,
+                #fff 40px,
+                #000 40px,
+                #000 80px
+            );
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .specimen-title {
+                font-size: 1.8rem;
+            }
+            
+            .specimen-body {
+                padding: 30px 20px 40px;
+            }
+            
+            .test-case {
+                padding-left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="masthead">
+            <h1 class="title">TYPE/DEMO</h1>
+            <p class="subtitle">CSS Property Examples</p>
+        </header>
+
+        <div class="spec-info">
+            TYPEFACE: CRIMSON TEXT (SERIF) / BASE SIZE: 1.3REM
+        </div>
+
+        <main class="main-content">
+            <section class="specimen-block">
+                <div class="specimen-header">
+                    <h2 class="specimen-title">FONT-WEIGHT</h2>
+                </div>
+                <div class="specimen-body">
+                    <div class="test-case" data-value="400">
+                        <p class="specimen-text w400">Regular weight establishes baseline presence and authority</p>
+                    </div>
+                    <div class="test-case" data-value="600">
+                        <p class="specimen-text w600">Semi-bold characters assert measured dominance over hierarchy</p>
+                    </div>
+                    <div class="test-case" data-value="700">
+                        <p class="specimen-text w700">Bold letterforms command attention through increased mass</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="specimen-block">
+                <div class="specimen-header">
+                    <h2 class="specimen-title">FONT-STYLE</h2>
+                </div>
+                <div class="specimen-body">
+                    <div class="test-case" data-value="NORMAL">
+                        <p class="specimen-text sn">Vertical discipline maintains rigid posture against chaos</p>
+                    </div>
+                    <div class="test-case" data-value="ITALIC">
+                        <p class="specimen-text si">Slanted forms lean into the future with urgent momentum</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="specimen-block">
+                <div class="specimen-header">
+                    <h2 class="specimen-title">LETTER-SPACING</h2>
+                </div>
+                <div class="specimen-body">
+                    <div class="test-case" data-value="-1PX">
+                        <p class="specimen-text lt">Compressed letters collapse under typographic pressure</p>
+                    </div>
+                    <div class="test-case" data-value="NORMAL">
+                        <p class="specimen-text ln">Default spacing preserves intended architectural rhythm</p>
+                    </div>
+                    <div class="test-case" data-value="2PX">
+                        <p class="specimen-text lw">Expanded space allows breathing room between forms</p>
+                    </div>
+                    <div class="test-case" data-value="5PX">
+                        <p class="specimen-text lww">Wide gaps fragment words into isolated elements</p>
+                    </div>
+                    <div class="test-case" data-value="10PX">
+                        <p class="specimen-text lwww">Extreme spacing destroys linguistic cohesion</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="specimen-block">
+                <div class="specimen-header">
+                    <h2 class="specimen-title">TEXT-TRANSFORM</h2>
+                </div>
+                <div class="specimen-body">
+                    <div class="test-case" data-value="NONE">
+                        <p class="specimen-text tn">Natural Case Maintains Original Character Heights and Dignity</p>
+                    </div>
+                    <div class="test-case" data-value="UPPERCASE">
+                        <p class="specimen-text tu">Capital letters establish uncompromising dominance over the page</p>
+                    </div>
+                    <div class="test-case" data-value="LOWERCASE">
+                        <p class="specimen-text tl">FORCED LOWERCASE SUBVERTS INTENDED HIERARCHICAL POWER</p>
+                    </div>
+                    <div class="test-case" data-value="CAPITALIZE">
+                        <p class="specimen-text tc">systematic elevation grants each word individual prominence</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="specimen-block">
+                <div class="specimen-header">
+                    <h2 class="specimen-title">TEXT-DECORATION</h2>
+                </div>
+                <div class="specimen-body">
+                    <div class="test-case" data-value="NONE">
+                        <p class="specimen-text dn">Unadorned text stands naked against the void</p>
+                    </div>
+                    <div class="test-case" data-value="UNDERLINE">
+                        <p class="specimen-text du">Horizontal lines anchor meaning to the baseline grid</p>
+                    </div>
+                    <div class="test-case" data-value="OVERLINE">
+                        <p class="specimen-text do">Lines above create typographic shelter from emptiness</p>
+                    </div>
+                    <div class="test-case" data-value="LINE-THROUGH">
+                        <p class="specimen-text dt">Crossing strokes kill meaning with surgical precision</p>
+                    </div>
+                    <div class="test-case" data-value="WAVY">
+                        <p class="specimen-text dw">Irregular underlines inject chaos into rigid systems</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="closing">
+            DEMO COMPLETE
+        </footer>
+    </div>
+</body>
+</html>
