@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampson Sweet Tooth Chocolate Chip Cookies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #3c3c3c;
+            background-color: #faf8f5;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 200;
+            color: #8B4513;
+            letter-spacing: 0.05em;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('herocookie.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 200;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h2 {
+            color: #8B4513;
+            font-weight: 300;
+            margin: 40px 0 20px 0;
+        }
+        
+        .recipe-description {
+            font-size: 1.1rem;
+            margin: 30px 0;
+            color: #5a5a5a;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #8B4513;
+        }
+        
+        .ingredients {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .ingredients ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredients li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .ingredients li:last-child {
+            border-bottom: none;
+        }
+        
+        .instructions {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 12px;
+            color: #5a5a5a;
+        }
+        
+        .website-reviews, .design-inspiration {
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        
+        .website-link {
+            display: block;
+            color: #8B4513;
+            margin-bottom: 10px;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .website-link:hover {
+            text-decoration: underline;
+        }
+        
+        .attribution {
+            font-style: italic;
+            color: #666;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Sampson Sweet Tooth Chocolate Chip Cookies</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Irresistible Chocolate Chip Cookies</h1>
+            <p class="hero-subtitle">Golden edges, melted centers, pure flavors</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="recipe-description">
+            <strong>Description:</strong> These cookies feature golden edges and melted centers with a deep chocolaty flavor that reminds you of home. For me, that used to be a small farm in Brazil, Indiana, which is where I first learned to cook. This melted butter technique aims to create a chewier texture compared to traditional creaming methods.
+        </div>
+        
+        <div class="ingredients">
+            <h2>Ingredients</h2>
+            <ul>
+                <li>2 cups all-purpose flour</li>
+                <li>3/4 tsp fine sea salt</li>
+                <li>3/4 tsp baking soda</li>
+                <li>3/4 cup (1.5 sticks) unsalted butter, melted</li>
+                <li>1 cup packed dark brown sugar</li>
+                <li>1 large egg</li>
+                <li>1 large egg yolk</li>
+                <li>1 1/2 tsp vanilla extract</li>
+                <li>1 3/4 cups dark chocolate chips or chunks</li>
+                <li>Flaky sea salt for finishing</li>
+            </ul>
+        </div>
+        
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <ol>
+                <li>Preheat oven to 375°F. Line two baking sheets with parchment paper.</li>
+                <li>In a medium bowl, whisk together flour, salt, and baking soda. Set aside.</li>
+                <li>Melt butter and let cool for 5 minutes. This prevents the eggs from cooking when mixed.</li>
+                <li>Whisk melted butter with brown sugar until smooth. Add egg, egg yolk, and vanilla. Mix well.</li>
+                <li>Fold in dry ingredients until just combined. Don't overmix—some streaks are fine.</li>
+                <li>Gently fold chocolate chips into dough until evenly distributed.</li>
+                <li>Scoop 2-tablespoon portions onto baking sheets. Sprinkle lightly with flaky salt.</li>
+                <li>Bake 9-11 minutes until edges are golden but centers look slightly underdone.</li>
+                <li>Let cookies cool on baking sheet for 5 minutes, then transfer to wire rack.</li>
+            </ol>
+        </div>
+        
+        <p class="attribution"><strong>Source:</strong> My name is Mitchell James Sampson. I've had a sweet tooth since I was a young kid, and I hope you enjoy the original Sampson Sweet Tooth Chocolate Chip Cookies! They're a special recipe made from the heart.</p>
+        
+        <div class="website-reviews">
+            <h2>Recipe Website Research</h2>
+            <p><a href="https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/" class="website-link">Joy Food Sunshine</a></p>
+            <p>This site immediately caught my attention with its balanced layout and professional polish. The sidebar featuring Laura's background adds credibility while the "Popular Foods" section demonstrates versatility beyond just cookies. The chocolate chip cookies are showcased beautifully without dominating the page, creating an inviting visual hierarchy that guides readers naturally through the content.
+            </p>
+            
+            <p><a href="https://www.bettycrocker.com/recipes/homemade-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57" class="website-link">Betty Crocker</a></p>
+            <p>While simpler in design, Betty Crocker compensates with trust-building elements like their prominent "Kitchen Tested" badge and detailed testing process explanation. The full-width hero image of close-up cookies is incredibly appealing, and the rating system with 71+ user questions creates strong community engagement. This demonstrates how established credibility can elevate even minimalist design choices.</p>
+            
+            <p><a href="https://www.delish.com/cooking/recipe-ideas/a50605/chocolate-chip-cookies-recipe/" class="website-link">Delish</a></p>
+            <p>Delish stands out with its generous whitespace and restrained color palette, creating focus without visual noise. The upfront display of yields, timing, and nutritional information serves busy home bakers perfectly. Though the image sizing feels inconsistent, the clean typography and organized information hierarchy make this an excellent reference for user-centered design principles.</p>
+            
+            <p><strong>Design Inspiration from Non-Recipe Sites:</strong></p>
+            <p><a href="https://www.quora.com" class="website-link">Quora</a></p>
+            <p>Quora's question-and-answer format offers brilliant inspiration for recipe troubleshooting sections. The clean thread organization and voting system could translate beautifully to user recipe modifications and tips, creating community-driven content that builds trust and engagement around cooking techniques.</p>
+            
+            <p><a href="https://medium.com" class="website-link">Medium</a></p>
+            <p>Medium's typography and reading-focused design provides a great template for recipe storytelling. Their generous line spacing, sophisticated font choices, and simple layout could elevate recipe instructions from being mere lists to engaging narratives.</p>
+            
+            <p><a href="https://www.tripadvisor.com" class="website-link">TripAdvisor</a></p>
+            <p>Despite its cluttered interface, TripAdvisor's review and rating systems offer valuable lessons for recipe feedback. The challenge lies in adapting their community-driven approach while avoiding an overwhelming amount of navigation options.</p>
+        </div>
+    </div>
+</body>
+</html>
