@@ -1,0 +1,80 @@
+/* Challenge 1: Set the margin-bottom of the header to 3rem */
+header {
+    margin-bottom: 3rem;
+}
+
+/* Challenge 2: Set the line-height of all paragraphs to 1.6 */
+p {
+    line-height: 1.6;
+}
+
+/* Challenge 3: Make the font-size of the "See All..." links 0.8em, and make them uppercase */
+.see-all {
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+/* Challenge 4: Make the font-size of show titles 2.5rem */
+.shows > li > h1 {
+    font-size: 2.5rem;
+}
+
+/* Challenge 5: Make the section-titles uppercase, and font-size 1rem */
+.shows section h2 {
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+/* Challenge 6: Make all title fonts light weight */
+h1, h2 {
+    font-weight: 300;
+}
+
+/* Challenge 7: Make the cast images width:100% */
+.cast img {
+    width: 100%;
+}
+
+/* Challenge 8: Make each castmember element width:25% */
+.cast ul li {
+    width: 25%;
+}
+
+/* Challenge 9: Add a 1px solid black border above each show */
+.shows > li {
+    border-top: 1px solid black;
+}
+
+/* Challenge 10: Make the navigation tab with the .selected class be bold and black */
+nav .selected a {
+    font-weight: bold;
+    color: black;
+}
+
+/* Challenge 11: Make the castmember labels 0.8rem */
+.cast li div {
+    font-size: 0.8rem;
+}
+
+/* Challenge 12: Make the actor/actress names bold */
+.cast li a div:first-of-type {
+    font-weight: bold;
+}
+
+/* Challenge 13: Make the character names italic */
+.cast li a div:last-of-type {
+    font-style: italic;
+}
+
+/* Challenge 14: Add an asterisk (*) to the last year in the Game of Thrones seasons list */
+#game-of-thrones .seasons ul li:last-child::after {
+    content: "*";
+}
+
+/* Challenge 15: Add the text "* Final Season" on the next line after the Game of Thrones season list */
+#game-of-thrones .seasons ul::after {
+    content: "* Final Season";
+    display: block;
+    font-size: 0.7rem;
+    color: #999;
+}
