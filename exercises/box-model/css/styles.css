@@ -1,0 +1,28 @@
+/* Box layers */
+.box-layers {
+  background-color: #eeeeee;
+  padding: 2rem 1rem 4rem 1rem;
+  border-top: 10px solid #dddddd;
+  margin: 4rem 0;
+}
+
+/* Margin collapse */
+.h2-wrapper {
+  border: 1px solid black;
+}
+
+/* Box sizing */
+.box-sizing-example {
+  background-color: #eeeeee;
+  padding: 2rem;
+  border: 10px solid #dddddd;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Overflow */
+.overflow-example {
+  width: 50%;
+  height: 300px;
+  overflow: auto;
+}
