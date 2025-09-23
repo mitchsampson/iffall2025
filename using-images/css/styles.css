@@ -1,0 +1,28 @@
+/* Import base styles from the stylesheet */
+@import url('https://wudesign.me/resources/using-images/css/styles.css');
+
+/* Full-screen image styling */
+.full-screen {
+    width: 100%;
+}
+
+/* Square image styling with cropping */
+.square {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    object-position: left center;
+}
+
+/* Background image styling */
+.background-image-example {
+    background-image: url(https://wudesign.me/resources/using-images/images/shelf-cloud-vertical.jpg);
+    padding: 10% 5% 45% 40%;
+    background-size: cover;
+    background-position: center 20%;
+}
+
+/* Compressed image styling */
+.compressed-image img {
+    width: 100%;
+}
