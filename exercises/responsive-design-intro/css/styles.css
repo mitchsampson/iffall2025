@@ -1,0 +1,32 @@
+/* Responsive image rule */
+img {
+  max-width: 100%;
+}
+
+/* Body styling with responsive width and centering */
+body {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  max-width: 40rem;
+}
+
+/* Base font size for mobile */
+html {
+  font-size: 12pt;
+}
+
+/* Media query for larger screens */
+@media (min-width: 640px) {
+  html {
+    font-size: 16pt;
+  }
+  
+  .two-columns-example {
+    display: flex;
+  }
+  
+  .two-columns-example > * {
+    width: 50%;
+  }
+}
