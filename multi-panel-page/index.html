@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mitchell Sampson's HTML Tracing Exercise</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: "Archivo Narrow", sans-serif;
+		}
+
+		/* Hero Section */
+		.hero {
+			background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+			            url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?w=1600') center 20%/cover;
+			min-height: 420px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			text-align: center;
+			padding: 80px 20px;
+		}
+
+		.hero h1 {
+			font-size: 80px;
+			font-weight: 700;
+			margin-bottom: 8px;
+		}
+
+		.hero p {
+			font-size: 24px;
+			font-style: normal;
+		}
+		
+		.hero p em {
+			font-style: italic;
+		}
+
+		/* Content Image Section */
+		.content-with-image {
+			background-color: #3d2b56;
+			color: white;
+			padding: 70px 20px 90px 20px;
+		}
+
+		.content-with-image h2 {
+			font-size: 48px;
+			font-weight: 700;
+			text-align: center;
+			margin-bottom: 45px;
+		}
+
+		.content-wrapper {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 0 67px;
+		}
+
+		.content-with-image img {
+			float: right;
+			width: 380px;
+			margin-left: 30px;
+			margin-bottom: 20px;
+			border: 0.5px solid white;
+		}
+
+		.content-with-image p {
+			font-size: 16px;
+			line-height: 1.7;
+			margin-bottom: 20px;
+			text-align: left;
+		}
+
+		.clearfix::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/* Photo Grid Section */
+		.photo-grid {
+			background-color: #f0ebf4;
+			padding: 70px 20px;
+		}
+
+		.photo-grid h2 {
+			font-size: 48px;
+			font-weight: 700;
+			text-align: center;
+			margin-bottom: 55px;
+			color: #333;
+		}
+
+		.grid-container {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 40px 50px;
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 0 80px;
+		}
+
+		.photo-item {
+			display: flex;
+			gap: 25px;
+		}
+
+		.photo-item img {
+			width: 193px;
+			height: 165px;
+			object-fit: cover;
+			flex-shrink: 0;
+		}
+
+		.photo-item h3 {
+			font-size: 20px;
+			font-weight: 700;
+			margin-bottom: 10px;
+			color: #333;
+		}
+
+		.photo-item p {
+			font-size: 15px;
+			line-height: 1.6;
+			color: #666;
+		}
+
+		/* Purple Section */
+		.red-section {
+			background-color: #8b5a8c;
+			color: white;
+			padding: 65px 20px;
+			text-align: center;
+		}
+
+		.red-section h2 {
+			font-size: 48px;
+			font-weight: 700;
+			margin-bottom: 28px;
+		}
+
+		.red-section p {
+			font-size: 18px;
+			line-height: 1.65;
+			max-width: 587px;
+			margin: 0 auto;
+			padding: 0 50px;
+		}
+
+		/* Footer */
+		footer {
+			background-color: #424242;
+			color: white;
+			padding: 40px 10px;
+			text-align: left;
+			font-size: 18px;
+		}
+		
+		footer .footer-content {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<!-- Hero Section -->
+	<section class="hero">
+		<h1>Page Intro</h1>
+		<p>Subheading that <em>really</em> engages the user.</p>
+	</section>
+
+	<!-- Content with Image Section -->
+	<section class="content-with-image">
+		<h2>Section Title</h2>
+		<div class="content-wrapper clearfix">
+			<img src="https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800" alt="Electric Guitar">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod. Vivamus pulvinar posuere turpis congue laoreet. Suspendisse potenti. Sed fringilla, ex et dictum efficitur, augue nunc cursus elit, non lacinia diam ante et ipsum. Sed non commodo dolor. Sed vehicula aliquet nisl, sit amet convallis dolor posuere sed. Fusce consectetur quam diam, nec facilisis lectus congue non. Pellentesque sollicitudin mollis tempor. Vivamus mattis at quam a pretium. Aenean eget scelerisque mi, non rutrum felis. Maecenas facilisis imperdiet justo, ut sodales purus blandit vitae. Proin pellentesque laoreet lobortis. Sed feugiat ipsum eget lorem tempus commodo.</p>
+			
+			<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur lobortis, nisi pretium hendrerit tincidunt, <br>ante erat tempor purus, id condimentum purus dolor ac urna. Nullam imperdiet, ipsum vitae posuere euismod, justo elit auctor augue, at molestie est nulla ut lorem. Nam eu aliquam ipsum, a pretium enim. Nulla non consectetur tortor, ac placerat turpis. Nam lobortis libero sed varius pellentesque. In dapibus arcu ut mauris accumsan, in tincidunt risus eleifend. Cras ut nulla vel eros iaculis rutrum eget sed felis.</p>
+			
+			<p>Morbi et maximus ante, eu tincidunt ligula. Suspendisse elementum, leo quis sodales vehicula, velit enim hendrerit risus, vitae porttitor quam risus quis erat. Maecenas sed tellus et justo commodo tempor. Mauris augue nibh, varius nec faucibus sit amet, porttitor ut risus. Maecenas dapibus tellus felis, quis interdum magna lobortis at. Nam vel ornare turpis. Nulla facilisi. Morbi velit justo, vehicula vel tristique vitae, finibus sit amet eros. Quisque pellentesque erat quis enim vulputate posuere. Aliquam erat volutpat. Curabitur gravida mi at enim varius dignissim. Morbi vitae turpis ut ligula tincidunt varius eget ac lorem. Cras laoreet augue augue, non sodales libero elementum ultrices.</p>
+		</div>
+	</section>
+
+	<!-- Photo Grid Section -->
+	<section class="photo-grid">
+		<h2>Section Title</h2>
+		<div class="grid-container">
+			<div class="photo-item">
+				<img src="https://images.unsplash.com/photo-1556449895-a33c9dba33dd?w=400" alt="Acoustic Guitar">
+				<div>
+					<h3>Photo Title</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod.</p>
+				</div>
+			</div>
+			<div class="photo-item">
+				<img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=400" alt="Trumpet">
+				<div>
+					<h3>Photo Title</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod.</p>
+				</div>
+			</div>
+			<div class="photo-item">
+				<img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?w=400" alt="Acoustic Guitar 2">
+				<div>
+					<h3>Photo Title</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod.</p>
+				</div>
+			</div>
+			<div class="photo-item">
+				<img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=400" alt="Drums">
+				<div>
+					<h3>Photo Title</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod.</p>
+				</div>
+			</div>
+			<div class="photo-item">
+				<img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400" alt="Drums 2">
+				<div>
+					<h3>Photo Title</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod.</p>
+				</div>
+			</div>
+			<div class="photo-item">
+				<img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400" alt="Acoustic Guitar and Hands">
+				<div>
+					<h3>Photo Title</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Purple Section -->
+	<section class="red-section">
+		<h2>Section Title</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan vitae massa quis euismod. Vivamus pulvinar posuere turpis congue laoreet. Suspendisse potenti. Sed fringilla, ex et dictum efficitur, augue nunc cursus elit, non lacinia diam ante et ipsum. Sed non commodo dolor. Sed vehicula aliquet nisl, sit amet convallis dolor posuere sed.</p>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="footer-content">
+			© Copyright 2024
+		</div>
+	</footer>
+</body>
+</html>
