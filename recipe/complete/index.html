@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampson's Chocolate Chip Cookies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #3c2f2f;
+            background-color: #faf8f5;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #2c2c2c;
+            color: white;
+            padding: 40px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 0 25px;
+            margin-bottom: 30px;
+            margin-top: 60px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            padding: 14px 25px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar nav a:hover {
+            background: rgba(139, 69, 19, 0.3);
+            border-left-color: #8B4513;
+            color: #fff;
+        }
+
+        .main-content {
+            margin-left: 200px;
+            flex: 1;
+            max-width: 1400px;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: #2c2c2c;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .mobile-nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .sidebar.mobile-open {
+            transform: translateX(0);
+        }
+
+        .hero {
+            background: white;
+            padding: 60px 60px 50px 60px;
+            text-align: center;
+        }
+
+        .hero-image {
+            max-width: 900px;
+            width: 100%;
+            height: 450px;
+            margin: 0 auto 40px auto;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #3e2723;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            color: #8B4513;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            padding: 30px 0;
+            border-top: 1px solid #e8d5c4;
+            border-bottom: 1px solid #e8d5c4;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #8B4513;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 1.5px;
+            margin-top: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #5d4037;
+            margin-bottom: 60px;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #3e2723;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 70px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-list li {
+            padding: 12px 0 12px 25px;
+            position: relative;
+            color: #5d4037;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            border-bottom: 1px solid #f0e5dc;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #d2691e;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+
+        .steps-intro {
+            font-size: 1.1rem;
+            color: #5d4037;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .step {
+            margin-bottom: 50px;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 20px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #8B4513;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .step-content {
+            padding-top: 5px;
+        }
+
+        .step-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            color: #3e2723;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .step-description {
+            color: #5d4037;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .step-tip {
+            font-size: 0.95rem;
+            color: #8B4513;
+            font-style: italic;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        .story-section {
+            background: white;
+            padding: 60px;
+            border-radius: 8px;
+            margin-top: 70px;
+            text-align: center;
+        }
+
+        .story-section h2 {
+            color: #3e2723;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .story-section p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #5d4037;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #999;
+            font-size: 0.9rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        @media (max-width: 968px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+                z-index: 999;
+            }
+
+            .mobile-nav-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .hero {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .container {
+                padding: 40px 30px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .step {
+                grid-template-columns: 50px 1fr;
+                gap: 15px;
+            }
+
+            .step-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .story-section {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .intro-text {
+                padding: 0 10px;
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="mobile-nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <h2>Recipe Navigation</h2>
+        <nav>
+            <a href="#overview">Overview</a>
+            <a href="#ingredients">Ingredients</a>
+            <a href="#equipment">Equipment</a>
+            <a href="#method">Method</a>
+            <a href="#story">Story</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="hero" id="overview">
+            <div class="hero-image">
+                <img src="images/hero-cookies.jpg" alt="Fresh baked chocolate chip cookies">
+            </div>
+
+            <h1>Sampson's Chocolate Chip Cookies</h1>
+            <p class="tagline">A farm recipe from Brazil, Indiana</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-value">15</span>
+                    <span class="stat-label">Minutes Prep</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">12</span>
+                    <span class="stat-label">Minutes Bake</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">27</span>
+                    <span class="stat-label">Total Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">24</span>
+                    <span class="stat-label">Cookies</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <p class="intro-text">
+                These cookies come from my family's farm in the countryside. They're known for their gooey texture and rich chocolate flavor.
+            </p>
+
+            <div class="two-column">
+                <div class="section" id="ingredients">
+                    <h2 class="section-title">Ingredients</h2>
+                    <ul class="info-list">
+                        <li>2 cups all-purpose flour</li>
+                        <li>1 tsp baking soda</li>
+                        <li>1 tsp salt</li>
+                        <li>1/2 cup butter, melted and cooled</li>
+                        <li>3/4 cup brown sugar</li>
+                        <li>1/4 cup white sugar</li>
+                        <li>1 large egg</li>
+                        <li>1 tsp vanilla extract</li>
+                        <li>1 cup chocolate chips</li>
+                    </ul>
+                </div>
+
+                <div class="section" id="equipment">
+                    <h2 class="section-title">Equipment</h2>
+                    <ul class="info-list">
+                        <li>Large mixing bowl</li>
+                        <li>Medium mixing bowl</li>
+                        <li>Baking sheets (2)</li>
+                        <li>Parchment paper</li>
+                        <li>Measuring cups and spoons</li>
+                        <li>Mixing spoon or spatula</li>
+                        <li>Wire cooling rack</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section" id="method">
+                <h2 class="section-title">Method</h2>
+                <p class="steps-intro">
+                    The key to these cookies is the melted butter technique. Follow each step and you'll have chewy,
+                    delicious cookies every time.
+                </p>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step1.jpg" alt="Oven and baking sheets with parchment">
+                        </div>
+                        <h3 class="step-title">Preheat & Prepare</h3>
+                        <p class="step-description">
+                            Heat your oven to 350°F. Line two baking sheets with parchment paper.
+                        </p>
+                        <div class="step-tip">
+                            The parchment paper prevents sticking and ensures even browning.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step2.jpg" alt="Dry ingredients being whisked in a bowl">
+
+                        </div>
+                        <h3 class="step-title">Mix Dry Ingredients</h3>
+                        <p class="step-description">
+                            In a medium bowl, whisk together the flour, baking soda, and salt.
+                        </p>
+                        <div class="step-tip">
+                            Whisking distributes everything evenly throughout the flour.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step3.jpg" alt="Melted butter cooling in a bowl">
+
+                        </div>
+                        <h3 class="step-title">Melt & Cool Butter</h3>
+                        <p class="step-description">
+                            Melt the butter completely, and then let it cool to room temperature for 10-15 minutes.
+                        </p>
+                        <div class="step-tip">
+                            Hot butter will scramble the egg, so turn the butter into a cool liquid first.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step4.jpg" alt="Mixing butter and sugars together">
+                        </div>
+                        <h3 class="step-title">Combine Wet Ingredients</h3>
+                        <p class="step-description">
+                            Mix cooled butter with brown and white sugars until everything is combined. Add egg and vanilla, and then mix until smooth.
+                        </p>
+                        <div class="step-tip">
+                            The mixture should be thick and glossy with sugars mostly dissolved.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step5.jpg" alt="Adding dry ingredients to wet mixture">
+                        </div>
+                        <h3 class="step-title">Form Dough</h3>
+                        <p class="step-description">
+                            Add dry ingredients to wet and stir gently until mixed. A few flour streaks are normal here.
+                        </p>
+                        <div class="step-tip">
+                            Overstirring develops gluten, which makes tougher cookies. Stir carefully.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step6.jpg" alt="Folding chocolate chips into dough">
+                        </div>
+                        <h3 class="step-title">Add Chocolate</h3>
+                        <p class="step-description">
+                            Fold chocolate chips into the dough until they are evenly distributed.
+                        </p>
+                        <div class="step-tip">
+                            Use a spatula to fold the chocolate rather than stir to keep the dough tender throughout.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step7.jpg" alt="Cookie dough scoops on baking sheet">
+                        </div>
+                        <h3 class="step-title">Shape & Bake</h3>
+                        <p class="step-description">
+                            Drop big tablespoons of dough 2 inches apart on sheets. Bake 12 minutes until edges are golden.
+                        </p>
+                        <div class="step-tip">
+                            Centers will look slightly underdone. Let them continue to bake on the hot sheet.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <div class="step-image">
+                            <img src="images/step8.jpg" alt="Cookies cooling on wire rack">
+                        </div>
+                        <h3 class="step-title">Cool Down</h3>
+                        <p class="step-description">
+                            Let the cookies cool on the baking sheet for 5 minutes, and then transfer them to a wire rack.
+                        </p>
+                        <div class="step-tip">
+                            Cooling first allows the cookies to set. Let them cool completely for best texture.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-section" id="story">
+                <h2>The Farm Tradition</h2>
+                <p>
+                    Growing up on a small farm in Brazil, Indiana, I learned to adopt this recipe from my grandmother, who took care of me when I was a little boy. She always
+                    emphasized the importance of melted butter to create a denser, chewier cookie compared to others.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Recipe crafted by Mitchell J. Sampson</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('mobile-open');
+        }
+
+        document.querySelectorAll('.sidebar nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('mobile-open');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
