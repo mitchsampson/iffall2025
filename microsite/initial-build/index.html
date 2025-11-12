@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioluminescence</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0d1b2a;
+            color: #c5d9e8;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        nav a {
+            color: #c5d9e8;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        /* Hero */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: 
+                linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.9)),
+                url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&h=1080&fit=crop') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 217, 255, 0.15) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 8px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e8f4f8;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 0 auto;
+            max-width: 600px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Page Sections */
+        .page {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #00d9ff;
+            margin-bottom: 2.5rem;
+            text-shadow: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            max-width: 750px;
+            color: #c5d9e8;
+        }
+
+        /* Images */
+        .feature-image {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin: 2rem 0 4rem 0;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        /* Grid */
+        .organism-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .organism-card {
+            background: rgba(20, 40, 60, 0.5);
+            padding: 1.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .organism-card:hover {
+            background: rgba(20, 40, 60, 0.8);
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .organism-card h3 {
+            color: #00d9ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .organism-card p {
+            color: #c5d9e8;
+            font-size: 0.95rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin: 3rem 0;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #00d9ff;
+            text-shadow: none;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c5d9e8;
+            line-height: 1.4;
+        }
+
+        /* Function boxes */
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .function-box {
+            background: rgba(20, 40, 60, 0.5);
+            padding: 2rem;
+            border-left: 3px solid #00d9ff;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .function-box h3 {
+            color: #00d9ff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .function-box p {
+            color: #c5d9e8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .organism-grid,
+            .function-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#organisms">Organisms</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#applications">Applications</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>BIOLUMINESCENCE</h1>
+            <p>The emission of light by living organisms</p>
+        </div>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page" id="intro">
+        <div class="container">
+            <h2>Introduction</h2>
+            <p>
+                Bioluminescence is the emission of light during a chemiluminescence reaction by living organisms. 
+                Bioluminescence occurs in multifarious organisms ranging from marine vertebrates and invertebrates, 
+                as well as in some fungi, microorganisms including some bioluminescent bacteria, dinoflagellates and 
+                terrestrial arthropods such as fireflies.
+            </p>
+            <p>
+                In most cases, the principal chemical reaction in bioluminescence involves the reaction of a substrate 
+                called luciferin and an enzyme, called luciferase. In all characterized cases, the enzyme catalyzes the 
+                oxidation of the luciferin resulting in excited state oxyluciferin, which is the light emitter of the reaction.
+            </p>
+            <p>
+                In evolution, luciferins vary little: one in particular, coelenterazine, is found in 11 different animal phyla. 
+                Conversely, luciferases vary widely between different species. Bioluminescence has arisen over 40 times in 
+                evolutionary history.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">700+</div>
+                    <div class="stat-label">Animal Genera Can Glow</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">76%</div>
+                    <div class="stat-label">Of Deep Sea Animals Glow</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">40</div>
+                    <div class="stat-label">Times It Evolved Independently</div>
+                </div>
+            </div>
+
+            <img src="chemical.jpg" alt="Chemical reaction" class="feature-image">
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="organisms">
+        <div class="container">
+            <h2>Bioluminescent Organisms</h2>
+            <p>
+                Bioluminescence occurs widely among animals, especially in the open sea, including fish, jellyfish, 
+                comb jellies, crustaceans, and cephalopod molluscs; in some fungi and bacteria; and in various 
+                terrestrial invertebrates. More than 700 animal genera have been recorded with light-producing species.
+            </p>
+            <p>
+                In marine coastal habitats, about 2.5% of organisms are estimated to be bioluminescent, whereas in 
+                pelagic habitats in the eastern Pacific, about 76% of the main taxa of deep-sea animals have been found 
+                to be capable of producing light.
+            </p>
+
+            <div class="organism-grid">
+                <div class="organism-card">
+                    <img src="dinoflagellates.jpg" alt="Dinoflagellates" class="card-image">
+                    <h3>Dinoflagellates</h3>
+                    <p>
+                        The most frequently encountered bioluminescent organisms in the surface layers of the sea, 
+                        responsible for the sparkling luminescence sometimes seen at night in disturbed water. At least 
+                        18 genera of these phytoplankton exhibit luminosity.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="bacteria.jpg" alt="Bacteria" class="card-image">
+                    <h3>Bacterial Symbioses</h3>
+                    <p>
+                        Most luminous bacteria inhabit the sea, dominated by Photobacterium and Vibrio. Many are found 
+                        in symbiotic relationships that involve fish, squids, crustaceans as hosts.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="fish.jpg" alt="Deep sea fish" class="card-image">
+                    <h3>Deep-Sea Fish</h3>
+                    <p>
+                        About 1,500 fish species are known to be bioluminescent; the capability evolved independently 
+                        at least 27 times. They use light to lure prey or hide from predators.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="squid.jpg" alt="Squid" class="card-image">
+                    <h3>Cephalopods</h3>
+                    <p>
+                        Many cephalopods, including at least 70 genera of squid, are bioluminescent. Some use bacterial 
+                        bioluminescence for camouflage by counterillumination.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="firefly.jpg" alt="Firefly" class="card-image">
+                    <h3>Fireflies</h3>
+                    <p>
+                        Fireflies use light to attract mates. In one system, females emit light from their abdomens to 
+                        attract males; in the other, flying males emit signals to which the sedentary females respond.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="fungi.jpg" alt="Fungi" class="card-image">
+                    <h3>Fungi</h3>
+                    <p>
+                        Species in the genera Armillaria, Mycena, Omphalotus, and others emit usually greenish light 
+                        from the mycelium, cap and gills. This may attract night-flying insects and aid in spore dispersal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="functions">
+        <div class="container">
+            <h2>Ecological Functions</h2>
+            <p>
+                The uses of bioluminescence by animals include counterillumination camouflage, mimicry of other animals 
+                to lure prey, and signaling to other individuals of the same species, such as to attract mates.
+            </p>
+            <p>
+                Steven Haddock et al. list definite functions in marine organisms: defensive functions of startle, 
+                counterillumination, misdirection, distractive body parts, burglar alarm, and warning; offensive functions 
+                of lure, stun or confuse prey, illuminate prey, and mate attraction.
+            </p>
+
+            <div class="function-grid">
+                <div class="function-box">
+                    <img src="camouflage.jpg" alt="Camouflage" class="card-image">
+                    <h3>Counterillumination Camouflage</h3>
+                    <p>
+                        In many animals of the deep sea, including several squid species, bacterial bioluminescence is used 
+                        for camouflage by counterillumination, in which the animal matches the overhead environmental light 
+                        as seen from below. Photoreceptors control the illumination to match the brightness of the background.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="attraction.jpg" alt="Attraction" class="card-image">
+                    <h3>Attraction</h3>
+                    <p>
+                        Fireflies use light to attract mates. In the marine environment, use of luminescence for mate attraction 
+                        is chiefly known among ostracods, small shrimp-like crustaceans. A polychaete worm, the Bermuda fireworm 
+                        creates a brief display, a few nights after the full moon, when the female lights up to attract males.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="defense.jpg" alt="Defense" class="card-image">
+                    <h3>Defense</h3>
+                    <p>
+                        Some squid and small crustaceans use bioluminescent chemical mixtures or bacterial slurries in the same 
+                        way as many squid use ink. A cloud of luminescent material is expelled, distracting or repelling a potential 
+                        predator, while the animal escapes to safety.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="mimicry.jpg" alt="Mimicry" class="card-image">
+                    <h3>Mimicry</h3>
+                    <p>
+                        Bioluminescence is used by a variety of animals to mimic other species. The cookiecutter shark uses 
+                        bioluminescence to camouflage its underside by counter-illumination, but a small patch remains dark, 
+                        appearing as a small fish to lure larger predatory fish.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page" id="applications">
+        <div class="container">
+            <h2>Human Applications</h2>
+            <p>
+                Bioluminescent organisms are a target for many areas of research. Luciferase systems are widely used in 
+                genetic engineering as reporter genes, and for biomedical research using bioluminescence imaging.
+            </p>
+            <p>
+                Shimomura, Martin Chalfie, and Roger Y. Tsien won the 2008 Nobel Prize in Chemistry for their 1961 discovery 
+                and development of green fluorescent protein as a tool for biological research.
+            </p>
+
+            <div class="function-grid">
+                <div class="function-box">
+                    <img src="lab.jpg" alt="Lab research" class="card-image">
+                    <h3>Genetic Engineering</h3>
+                    <p>
+                        The firefly luciferase gene was used as early as 1986 for research using transgenic tobacco plants. 
+                        Luciferase-based systems are used as reporter genes to track gene expression in real-time.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="medical.jpg" alt="Medical research" class="card-image">
+                    <h3>Medical Research</h3>
+                    <p>
+                        Bioluminescence imaging allows for non-invasive tracking of cellular processes and disease progression. 
+                        Bioluminescent activated destruction is an experimental cancer treatment.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="lighting.jpg" alt="Sustainable lighting" class="card-image">
+                    <h3>Sustainable Lighting</h3>
+                    <p>
+                        Engineered bioluminescence could perhaps one day be used to reduce the need for street lighting. In 2016, 
+                        Glowee, a French company started selling bioluminescent lights for shop fronts and street signs.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="plant.jpg" alt="Glowing plant" class="card-image">
+                    <h3>Glowing Plants</h3>
+                    <p>
+                        In April 2020, plants were genetically engineered to glow more brightly using genes from the bioluminescent 
+                        mushroom Neonothopanus nambi to convert caffeic acid into luciferin.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('nav a').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('href')).offset().top - 60
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
