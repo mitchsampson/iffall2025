@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioluminescence</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0d1b2a;
+            color: #c5d9e8;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(0, 100, 150, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 150, 200, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: ambientLight 15s ease-in-out infinite;
+        }
+
+        @keyframes ambientLight {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .page, nav, .hero {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        nav a {
+            color: #c5d9e8;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d9ff;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px #00d9ff;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated waves */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(transparent 60%, rgba(0, 100, 150, 0.4) 100%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C200,150 400,0 600,80 C800,150 1000,20 1200,100 L1200,200 L0,200 Z' fill='%2300d9ff' fill-opacity='0.2'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C200,20 400,130 600,60 C800,0 1000,140 1200,70 L1200,200 L0,200 Z' fill='%2300d9ff' fill-opacity='0.15'/%3E%3C/svg%3E");
+            background-size: 100% 300px, 100% 350px;
+            background-position: 0 100%, 200px 100%;
+            background-repeat: repeat-x;
+            animation: wave 15s linear infinite, wave2 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes wave {
+            0% {
+                background-position: 0 100%, 200px 100%;
+            }
+            100% {
+                background-position: 1200px 100%, 1400px 100%;
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 217, 255, 0.15) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1.5rem;
+            letter-spacing: 8px;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: #e8f4f8;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 0 auto;
+            max-width: 600px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Page Sections */
+        .page {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 217, 255, 0.5) 20%, 
+                rgba(0, 217, 255, 0.8) 50%, 
+                rgba(0, 217, 255, 0.5) 80%, 
+                transparent);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+        }
+
+        .page:nth-child(even) {
+            background: linear-gradient(180deg, 
+                rgba(13, 27, 42, 0) 0%, 
+                rgba(0, 50, 80, 0.1) 50%, 
+                rgba(13, 27, 42, 0) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #00d9ff;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        #intro h2 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            max-width: 750px;
+            color: #c5d9e8;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Images */
+        .feature-image {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin: 2rem 0 4rem 0;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8ba3b5;
+            font-style: italic;
+            margin: 1rem auto 3rem auto;
+            padding: 0 2rem;
+            max-width: 100%;
+        }
+
+        /* Grid */
+        .organism-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .organism-card {
+            background: rgba(20, 40, 60, 0.5);
+            padding: 1.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .organism-card:hover {
+            background: rgba(20, 40, 60, 0.8);
+            border-color: rgba(0, 217, 255, 0.6);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3), 0 0 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .organism-card h3 {
+            color: #00d9ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .organism-card:hover h3 {
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+
+        .organism-card p {
+            color: #c5d9e8;
+            font-size: 0.95rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin: 3rem 0;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover .stat-value {
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.8), 0 0 60px rgba(0, 217, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c5d9e8;
+            line-height: 1.4;
+        }
+
+        /* Function boxes */
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .function-box {
+            background: rgba(20, 40, 60, 0.5);
+            padding: 2rem;
+            border-left: 3px solid #00d9ff;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .function-box:hover {
+            background: rgba(20, 40, 60, 0.8);
+            border-left-width: 5px;
+            transform: translateX(5px);
+            box-shadow: -5px 10px 30px rgba(0, 217, 255, 0.2), 0 0 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .function-box h3 {
+            color: #00d9ff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .function-box:hover h3 {
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+
+        .function-box p {
+            color: #c5d9e8;
+        }
+
+        /* Image effects */
+        .card-image, .feature-image {
+            transition: all 0.4s ease;
+            filter: brightness(0.9);
+        }
+
+        .organism-card:hover .card-image,
+        .function-box:hover .card-image {
+            filter: brightness(1.1) contrast(1.1);
+            transform: scale(1.02);
+        }
+
+        .feature-image:hover {
+            filter: brightness(1.05) contrast(1.05);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(0, 217, 255, 0.2), rgba(0, 217, 255, 0.5), rgba(0, 217, 255, 0.2));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(20, 40, 60, 0.5);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            background: rgba(20, 40, 60, 0.8);
+            border-color: rgba(0, 217, 255, 0.6);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #00d9ff;
+            color: #0d1b2a;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+        }
+
+        .timeline-content h3 {
+            color: #00d9ff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            color: #c5d9e8;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 1rem;
+            transition: all 0.4s ease;
+            filter: brightness(0.9);
+        }
+
+        .timeline-content:hover .timeline-image {
+            filter: brightness(1.1) contrast(1.1);
+            transform: scale(1.02);
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .organism-card, .function-box, .stat {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .organism-card:nth-child(1), .stat:nth-child(1) { animation-delay: 0.1s; }
+        .organism-card:nth-child(2), .stat:nth-child(2) { animation-delay: 0.2s; }
+        .organism-card:nth-child(3), .stat:nth-child(3) { animation-delay: 0.3s; }
+        .organism-card:nth-child(4), .function-box:nth-child(2) { animation-delay: 0.4s; }
+        .organism-card:nth-child(5), .function-box:nth-child(3) { animation-delay: 0.5s; }
+        .organism-card:nth-child(6), .function-box:nth-child(4) { animation-delay: 0.6s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+
+            .hero p {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+            
+            .organism-grid,
+            .function-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .stat-value {
+                font-size: 2.5rem;
+            }
+
+            .page {
+                padding: 4rem 1.5rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 0;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                margin-top: 0;
+            }
+
+            .timeline-year {
+                left: 20px;
+                top: 50%;
+                transform: translate(0, -50%);
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#organisms">Organisms</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#applications">Applications</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>BIOLUMINESCENCE</h1>
+            <p>The emission of light by living organisms</p>
+        </div>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page" id="intro">
+        <div class="container">
+            <h2>Introduction</h2>
+            <p class="intro-text">
+                Bioluminescence is the emission of light during a chemiluminescence reaction by living organisms. 
+                Bioluminescence occurs in multifarious organisms ranging from marine vertebrates and invertebrates, 
+                as well as in some fungi, microorganisms including some bioluminescent bacteria, dinoflagellates and 
+                terrestrial arthropods such as fireflies.
+            </p>
+            <p class="intro-text">
+                In most cases, the principal chemical reaction in bioluminescence involves the reaction of a substrate 
+                called luciferin and an enzyme, called luciferase. In all characterized cases, the enzyme catalyzes the 
+                oxidation of the luciferin resulting in excited state oxyluciferin, which is the light emitter of the reaction.
+            </p>
+            <p class="intro-text">
+                In evolution, luciferins vary little: one in particular, coelenterazine, is found in 11 different animal phyla. 
+                Conversely, luciferases vary widely between different species. Bioluminescence has arisen over 40 times in 
+                evolutionary history.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">700+</div>
+                    <div class="stat-label">Animal Genera Can Glow</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">76%</div>
+                    <div class="stat-label">Of Deep Sea Animals Glow</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">40</div>
+                    <div class="stat-label">Times It Evolved Independently</div>
+                </div>
+            </div>
+
+            <img src="chemical.jpg" alt="Chemical reaction" class="feature-image">
+        </div>
+        <p class="image-caption">Different types of luciferin molecules found in various bioluminescent organisms. When oxidized by luciferase enzymes, these molecules produce light.</p>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="organisms">
+        <div class="container">
+            <h2>Bioluminescent Organisms</h2>
+            <p>
+                Bioluminescence occurs widely among animals, especially in the open sea, including fish, jellyfish, 
+                comb jellies, crustaceans, and cephalopod molluscs; in some fungi and bacteria; and in various 
+                terrestrial invertebrates. More than 700 animal genera have been recorded with light-producing species.
+            </p>
+            <p>
+                In marine coastal habitats, about 2.5% of organisms are estimated to be bioluminescent, whereas in 
+                pelagic habitats in the eastern Pacific, about 76% of the main taxa of deep-sea animals have been found 
+                to be capable of producing light.
+            </p>
+
+            <div class="organism-grid">
+                <div class="organism-card">
+                    <img src="dinoflagellates.jpg" alt="Dinoflagellates" class="card-image">
+                    <h3>Dinoflagellates</h3>
+                    <p>
+                        The most frequently encountered bioluminescent organisms in the surface layers of the sea, 
+                        responsible for the sparkling luminescence sometimes seen at night in disturbed water. At least 
+                        18 genera of these phytoplankton exhibit luminosity.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="bacteria.jpg" alt="Bacteria" class="card-image">
+                    <h3>Bacterial Symbioses</h3>
+                    <p>
+                        Most luminous bacteria inhabit the sea, dominated by Photobacterium and Vibrio. Many are found 
+                        in symbiotic relationships that involve fish, squids, crustaceans as hosts.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="fish.jpg" alt="Deep sea fish" class="card-image">
+                    <h3>Deep-Sea Fish</h3>
+                    <p>
+                        About 1,500 fish species are known to be bioluminescent; the capability evolved independently 
+                        at least 27 times. They use light to lure prey or hide from predators.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="squid.jpg" alt="Squid" class="card-image">
+                    <h3>Cephalopods</h3>
+                    <p>
+                        Many cephalopods, including at least 70 genera of squid, are bioluminescent. Some use bacterial 
+                        bioluminescence for camouflage by counterillumination.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="firefly.jpg" alt="Firefly" class="card-image">
+                    <h3>Fireflies</h3>
+                    <p>
+                        Fireflies use light to attract mates. In one system, females emit light from their abdomens to 
+                        attract males; in the other, flying males emit signals to which the sedentary females respond.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="fungi.jpg" alt="Fungi" class="card-image">
+                    <h3>Fungi</h3>
+                    <p>
+                        Species in the genera Armillaria, Mycena, Omphalotus, and others emit usually greenish light 
+                        from the mycelium, cap and gills. This may attract night-flying insects and aid in spore dispersal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="functions">
+        <div class="container">
+            <h2>Ecological Functions</h2>
+            <p>
+                The uses of bioluminescence by animals include counterillumination camouflage, mimicry of other animals 
+                to lure prey, and signaling to other individuals of the same species, such as to attract mates.
+            </p>
+            <p>
+                Steven Haddock et al. list definite functions in marine organisms: defensive functions of startle, 
+                counterillumination, misdirection, distractive body parts, burglar alarm, and warning; offensive functions 
+                of lure, stun or confuse prey, illuminate prey, and mate attraction.
+            </p>
+
+            <div class="function-grid">
+                <div class="function-box">
+                    <img src="camouflage.jpg" alt="Camouflage" class="card-image">
+                    <h3>Counterillumination Camouflage</h3>
+                    <p>
+                        In many animals of the deep sea, including several squid species, bacterial bioluminescence is used 
+                        for camouflage by counterillumination, in which the animal matches the overhead environmental light 
+                        as seen from below. Photoreceptors control the illumination to match the brightness of the background.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="attraction.jpg" alt="Attraction" class="card-image">
+                    <h3>Attraction</h3>
+                    <p>
+                        Fireflies use light to attract mates. In the marine environment, use of luminescence for mate attraction 
+                        is chiefly known among ostracods, small shrimp-like crustaceans. A polychaete worm, the Bermuda fireworm 
+                        creates a brief display, a few nights after the full moon, when the female lights up to attract males.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="defense.jpg" alt="Defense" class="card-image">
+                    <h3>Defense</h3>
+                    <p>
+                        Some squid and small crustaceans use bioluminescent chemical mixtures or bacterial slurries in the same 
+                        way as many squid use ink. A cloud of luminescent material is expelled, distracting or repelling a potential 
+                        predator, while the animal escapes to safety.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="mimicry.jpg" alt="Mimicry" class="card-image">
+                    <h3>Mimicry</h3>
+                    <p>
+                        Bioluminescence is used by a variety of animals to mimic other species. The cookiecutter shark uses 
+                        bioluminescence to camouflage its underside by counter-illumination, but a small patch remains dark, 
+                        appearing as a small fish to lure larger predatory fish.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page" id="applications">
+        <div class="container">
+            <h2>Human Applications</h2>
+            <p>
+                Bioluminescent organisms are a target for many areas of research. Luciferase systems are widely used in 
+                genetic engineering as reporter genes, and for biomedical research using bioluminescence imaging.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Discovery</div>
+                    <div class="timeline-content">
+                        <h3>Green Fluorescent Protein (1961)</h3>
+                        <p>
+                            Osamu Shimomura discovered and isolated green fluorescent protein (GFP) from the jellyfish 
+                            Aequorea victoria. This groundbreaking discovery would later win the Nobel Prize in Chemistry 
+                            in 2008, shared with Martin Chalfie and Roger Y. Tsien for their development of GFP as a tool 
+                            for biological research.
+                        </p>
+                        <img src="lab.jpg" alt="Lab research" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Engineering</div>
+                    <div class="timeline-content">
+                        <h3>Genetic Applications (1986)</h3>
+                        <p>
+                            The firefly luciferase gene was first used for research using transgenic tobacco plants. 
+                            This marked the beginning of widespread use of luciferase-based systems as reporter genes 
+                            to track gene expression in real-time, revolutionizing molecular biology research.
+                        </p>
+                        <img src="plant.jpg" alt="Genetic engineering" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Medicine</div>
+                    <div class="timeline-content">
+                        <h3>Medical Research & Imaging</h3>
+                        <p>
+                            Bioluminescence imaging became widely adopted for non-invasive tracking of cellular processes 
+                            and disease progression in living organisms. Researchers began exploring bioluminescent activated 
+                            destruction as an experimental cancer treatment, opening new possibilities in targeted therapy.
+                        </p>
+                        <img src="medical.jpg" alt="Medical research" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Lighting</div>
+                    <div class="timeline-content">
+                        <h3>Sustainable Solutions (2016)</h3>
+                        <p>
+                            Glowee, a French company, started selling bioluminescent lights for shop fronts and street signs. 
+                            This pioneering effort demonstrated that engineered bioluminescence could one day be used to 
+                            reduce the need for traditional street lighting, offering an eco-friendly alternative.
+                        </p>
+                        <img src="lighting.jpg" alt="Sustainable lighting" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Innovation</div>
+                    <div class="timeline-content">
+                        <h3>Glowing Plants (2020)</h3>
+                        <p>
+                            In April 2020, scientists successfully genetically engineered plants to glow more brightly 
+                            using genes from the bioluminescent mushroom Neonothopanus nambi. These plants convert 
+                            caffeic acid into luciferin, creating self-sustaining bioluminescent organisms.
+                        </p>
+                        <img src="plant.jpg" alt="Glowing plant" class="timeline-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('nav a').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('href')).offset().top - 60
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
