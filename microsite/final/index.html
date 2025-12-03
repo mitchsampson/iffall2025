@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitchell Sampson's Final Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a1628;
+            color: #c5d9e8;
+            line-height: 1.7;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Glowing background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(0, 100, 150, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0, 150, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 217, 255, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: ambientPulse 20s ease-in-out infinite;
+        }
+
+        @keyframes ambientPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .page, nav, .hero {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Desktop */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1.25rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        nav a {
+            color: #8ba3b5;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #00d9ff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            box-shadow: 0 0 10px #00d9ff;
+        }
+
+        /* Mobile menu button */
+        .menu-btn {
+            display: none;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #00d9ff;
+            position: absolute;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+        }
+
+        .menu-btn span:nth-child(1) { top: 0; }
+        .menu-btn span:nth-child(2) { top: 9px; }
+        .menu-btn span:nth-child(3) { top: 18px; }
+
+        .menu-btn.active span:nth-child(1) {
+            top: 9px;
+            transform: rotate(45deg);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+
+        /* Mobile menu overlay - hid on desktop */
+        .mobile-menu {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ocean waves animations */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath d='M0,100 C150,150 350,50 600,100 C850,150 1050,50 1200,100 L1200,200 L0,200 Z' fill='%2300d9ff' fill-opacity='0.08'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath d='M0,120 C200,60 400,140 600,80 C800,20 1000,100 1200,60 L1200,200 L0,200 Z' fill='%2300d9ff' fill-opacity='0.05'/%3E%3C/svg%3E");
+            background-size: 50% 100%;
+            background-position: 0 bottom;
+            background-repeat: repeat-x;
+            animation: waveMove 25s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            animation: heroPulse 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes heroPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 200;
+            color: #fff;
+            letter-spacing: 12px;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .hero p {
+            font-size: 0.85rem;
+            color: #8ba3b5;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Page Sections */
+        .page {
+            min-height: 100vh;
+            padding: 8rem 3rem;
+            position: relative;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #00d9ff;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        #intro h2 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            color: #9bb5c9;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* IMAGES */
+        .feature-image {
+            width: 100%;
+            height: 450px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin: 2rem 0;
+            opacity: 0.9;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1.25rem;
+            transition: all 0.4s ease;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b8599;
+            font-style: italic;
+            margin: 1rem auto 3rem auto;
+            max-width: 600px;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            gap: 4rem;
+            margin: 4rem 0;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 200;
+            color: #00d9ff;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #6b8599;
+            margin-top: 0.5rem;
+        }
+
+        /* Organism GRID */
+        .organism-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .organism-card {
+            background: rgba(15, 30, 50, 0.6);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .organism-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .organism-card:hover .card-image {
+            opacity: 1;
+        }
+
+        .organism-card h3 {
+            color: #00d9ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .organism-card p {
+            color: #8ba3b5;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Functions GRID */
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .function-box {
+            background: rgba(15, 30, 50, 0.6);
+            padding: 2rem;
+            border-left: 2px solid #00d9ff;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.4s ease;
+        }
+
+        .function-box:hover {
+            background: rgba(15, 30, 50, 0.9);
+            border-left-width: 4px;
+        }
+
+        .function-box h3 {
+            color: #00d9ff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .function-box p {
+            color: #8ba3b5;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 217, 255, 0.3), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 44%;
+            background: rgba(15, 30, 50, 0.6);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #00d9ff;
+            color: #0a1628;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 2;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h3 {
+            color: #00d9ff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .timeline-content p {
+            color: #8ba3b5;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 1rem;
+            opacity: 0.85;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            display: none;
+        }
+
+        /* TOUCH CANVAS */
+        #touch-canvas {
+            display: none;
+        }
+
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            nav::before {
+                content: 'BIO';
+                font-size: 0.9rem;
+                font-weight: 600;
+                letter-spacing: 4px;
+                color: #00d9ff;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            /* Mobile fullscreen menu */
+            .mobile-menu {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 22, 40, 0.98);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+            }
+
+            .mobile-menu.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu::before {
+                content: '';
+                position: absolute;
+                width: 250px;
+                height: 250px;
+                background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: menuPulse 4s ease-in-out infinite;
+            }
+
+            @keyframes menuPulse {
+                0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+                50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+            }
+
+            .mobile-menu-inner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .mobile-menu-inner a {
+                display: block;
+                color: #c5d9e8;
+                text-decoration: none;
+                font-size: 1.4rem;
+                letter-spacing: 8px;
+                text-transform: uppercase;
+                padding: 1.5rem 0;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-inner a:hover {
+                color: #00d9ff;
+                text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+            }
+
+            /* Bottom nav */
+            .bottom-nav {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 22, 40, 0.98);
+                backdrop-filter: blur(15px);
+                z-index: 1000;
+                padding: 0.75rem 0;
+                padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+                border-top: 1px solid rgba(0, 217, 255, 0.2);
+            }
+
+            .bottom-nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .bottom-nav a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.25rem;
+                color: #6b8599;
+                text-decoration: none;
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: all 0.3s ease;
+                padding: 0.5rem;
+            }
+
+            .bottom-nav a.active,
+            .bottom-nav a:hover {
+                color: #00d9ff;
+            }
+
+            .bottom-nav svg {
+                width: 22px;
+                height: 22px;
+                stroke: currentColor;
+                stroke-width: 1.5;
+                fill: none;
+            }
+
+            .bottom-nav a.active svg {
+                filter: drop-shadow(0 0 6px currentColor);
+            }
+
+            /* Touch canvas */
+            #touch-canvas {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9998;
+            }
+
+            body {
+                padding-bottom: 80px;
+            }
+
+            /* Hero mobile */
+            .hero {
+                height: 100vh;
+                height: 100dvh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 8px;
+                font-weight: 300;
+                animation: titleGlow 4s ease-in-out infinite;
+            }
+
+            @keyframes titleGlow {
+                0%, 100% { text-shadow: 0 0 20px rgba(0, 217, 255, 0.2); }
+                50% { text-shadow: 0 0 40px rgba(0, 217, 255, 0.5), 0 0 80px rgba(0, 217, 255, 0.2); }
+            }
+
+            .hero p {
+                font-size: 0.65rem;
+                letter-spacing: 4px;
+            }
+
+            /* Scroll indicator */
+            .hero-content::after {
+                content: '';
+                position: absolute;
+                bottom: -80px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 1px;
+                height: 50px;
+                background: linear-gradient(to bottom, #00d9ff, transparent);
+                animation: scrollLine 2s ease-in-out infinite;
+            }
+
+            @keyframes scrollLine {
+                0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+                50% { opacity: 1; }
+                100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            }
+
+            /* Pages */
+            .page {
+                padding: 4rem 1.5rem;
+                min-height: auto;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.8;
+            }
+
+            .intro-text {
+                text-align: left;
+            }
+
+            /* Stats */
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                margin: 2rem 0;
+            }
+
+            .stat-value {
+                font-size: 2.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.6rem;
+            }
+
+            .feature-image {
+                height: 250px;
+                margin: 1.5rem 0;
+            }
+
+            .image-caption {
+                font-size: 0.75rem;
+                margin: 0.5rem 0 2rem 0;
+            }
+
+            /* Swipe cards */
+            .organism-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                margin: 1.5rem -1.5rem;
+                padding: 1rem 1.5rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .organism-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .organism-card {
+                flex: 0 0 80%;
+                scroll-snap-align: center;
+            }
+
+            .organism-card .card-image {
+                height: 180px;
+            }
+
+            .organism-card p,
+            .function-box p {
+                max-height: 3.6em;
+                overflow: hidden;
+                position: relative;
+                transition: max-height 0.4s ease;
+            }
+
+            .organism-card p::after,
+            .function-box p::after {
+                content: 'tap to read more';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding-top: 1.5em;
+                background: linear-gradient(transparent, rgba(15, 30, 50, 1));
+                font-size: 0.7rem;
+                color: #00d9ff;
+                text-align: center;
+                letter-spacing: 1px;
+            }
+
+            .organism-card.expanded p,
+            .function-box.expanded p {
+                max-height: 400px;
+            }
+
+            .organism-card.expanded p::after,
+            .function-box.expanded p::after {
+                display: none;
+            }
+
+            .swipe-hint {
+                display: block;
+                text-align: center;
+                font-size: 0.7rem;
+                color: #4a6578;
+                letter-spacing: 2px;
+                margin-bottom: 1rem;
+            }
+
+            /* Function grid */
+            .function-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .function-box {
+                padding: 1.5rem;
+            }
+
+            .function-box .card-image {
+                height: 160px;
+            }
+
+            /* Timeline */
+            .timeline::before {
+                left: 16px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 40px;
+                padding: 1.5rem;
+            }
+
+            .timeline-year {
+                left: 16px;
+                top: 1.5rem;
+                transform: translateX(-50%);
+                font-size: 0.6rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1rem;
+            }
+
+            .timeline-image {
+                height: 140px;
+            }
+        }
+
+        /* Hide swipe hint on desktop */
+        .swipe-hint {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#organisms">Organisms</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#applications">Applications</a></li>
+        </ul>
+        <div class="menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#intro" class="mobile-nav-link">Introduction</a>
+            <a href="#organisms" class="mobile-nav-link">Organisms</a>
+            <a href="#functions" class="mobile-nav-link">Functions</a>
+            <a href="#applications" class="mobile-nav-link">Applications</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>BIOLUMINESCENCE</h1>
+            <p>The emission of light by living organisms</p>
+        </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="page" id="intro">
+        <div class="container">
+            <h2>Introduction</h2>
+            <p class="intro-text">
+                Bioluminescence is the emission of light during a chemiluminescence reaction by living organisms.
+                Bioluminescence occurs in multifarious organisms ranging from marine vertebrates and invertebrates,
+                as well as in some fungi, microorganisms including some bioluminescent bacteria, dinoflagellates and
+                terrestrial arthropods such as fireflies.
+            </p>
+            <p class="intro-text">
+                In most cases, the principal chemical reaction in bioluminescence involves the reaction of a substrate
+                called luciferin and an enzyme, called luciferase. In all characterized cases, the enzyme catalyzes the
+                oxidation of the luciferin resulting in excited state oxyluciferin, which is the light emitter of the reaction.
+            </p>
+            <p class="intro-text">
+                In evolution, luciferins vary little: one in particular, coelenterazine, is found in 11 different animal phyla.
+                Conversely, luciferases vary widely between different species. Bioluminescence has arisen over 40 times in
+                evolutionary history.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">700+</div>
+                    <div class="stat-label">Animal Genera Can Glow</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">76%</div>
+                    <div class="stat-label">Of Deep Sea Animals Glow</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">40</div>
+                    <div class="stat-label">Times It Evolved Independently</div>
+                </div>
+            </div>
+
+            <img src="chemical.jpg" alt="Chemical reaction" class="feature-image">
+            <p class="image-caption">Different types of luciferin molecules found in various bioluminescent organisms. When oxidized by luciferase enzymes, these molecules produce light.</p>
+        </div>
+    </div>
+
+    <!-- Organisms -->
+    <div class="page" id="organisms">
+        <div class="container">
+            <h2>Bioluminescent Organisms</h2>
+            <p>
+                Bioluminescence occurs widely among animals, especially in the open sea, including fish, jellyfish,
+                comb jellies, crustaceans, and cephalopod molluscs; in some fungi and bacteria; and in various
+                terrestrial invertebrates. More than 700 animal genera have been recorded with light-producing species.
+            </p>
+            <p>
+                In marine coastal habitats, about 2.5% of organisms are estimated to be bioluminescent, whereas in
+                pelagic habitats in the eastern Pacific, about 76% of the main taxa of deep-sea animals have been found
+                to be capable of producing light.
+            </p>
+
+            <p class="swipe-hint">SWIPE TO EXPLORE</p>
+
+            <div class="organism-grid">
+                <div class="organism-card">
+                    <img src="dinoflagellates.jpg" alt="Dinoflagellates" class="card-image">
+                    <h3>Dinoflagellates</h3>
+                    <p>
+                        The most frequently encountered bioluminescent organisms in the surface layers of the sea,
+                        responsible for the sparkling luminescence sometimes seen at night in disturbed water. At least
+                        18 genera of these phytoplankton exhibit luminosity.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="bacteria.jpg" alt="Bacteria" class="card-image">
+                    <h3>Bacterial Symbioses</h3>
+                    <p>
+                        Most luminous bacteria inhabit the sea, dominated by Photobacterium and Vibrio. Many are found
+                        in symbiotic relationships that involve fish, squids, crustaceans as hosts.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="fish.jpg" alt="Deep sea fish" class="card-image">
+                    <h3>Deep-Sea Fish</h3>
+                    <p>
+                        About 1,500 fish species are known to be bioluminescent; the capability evolved independently
+                        at least 27 times. They use light to lure prey or hide from predators.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="squid.jpg" alt="Squid" class="card-image">
+                    <h3>Cephalopods</h3>
+                    <p>
+                        Many cephalopods, including at least 70 genera of squid, are bioluminescent. Some use bacterial
+                        bioluminescence for camouflage by counterillumination.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="firefly.jpg" alt="Firefly" class="card-image">
+                    <h3>Fireflies</h3>
+                    <p>
+                        Fireflies use light to attract mates. In one system, females emit light from their abdomens to
+                        attract males; in the other, flying males emit signals to which the sedentary females respond.
+                    </p>
+                </div>
+
+                <div class="organism-card">
+                    <img src="fungi.jpg" alt="Fungi" class="card-image">
+                    <h3>Fungi</h3>
+                    <p>
+                        Species in the genera Armillaria, Mycena, Omphalotus, and others emit usually greenish light
+                        from the mycelium, cap and gills. This may attract night-flying insects and aid in spore dispersal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Functions -->
+    <div class="page" id="functions">
+        <div class="container">
+            <h2>Ecological Functions</h2>
+            <p>
+                The uses of bioluminescence by animals include counterillumination camouflage, mimicry of other animals
+                to lure prey, and signaling to other individuals of the same species, such as to attract mates.
+            </p>
+            <p>
+                Steven Haddock et al. list definite functions in marine organisms: defensive functions of startle,
+                counterillumination, misdirection, distractive body parts, burglar alarm, and warning; offensive functions
+                of lure, stun or confuse prey, illuminate prey, and mate attraction.
+            </p>
+
+            <div class="function-grid">
+                <div class="function-box">
+                    <img src="camouflage.jpg" alt="Camouflage" class="card-image">
+                    <h3>Counterillumination Camouflage</h3>
+                    <p>
+                        In many animals of the deep sea, including several squid species, bacterial bioluminescence is used
+                        for camouflage by counterillumination, in which the animal matches the overhead environmental light
+                        as seen from below. Photoreceptors control the illumination to match the brightness of the background.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="attraction.jpg" alt="Attraction" class="card-image">
+                    <h3>Attraction</h3>
+                    <p>
+                        Fireflies use light to attract mates. In the marine environment, use of luminescence for mate attraction
+                        is chiefly known among ostracods, small shrimp-like crustaceans. A polychaete worm, the Bermuda fireworm
+                        creates a brief display, a few nights after the full moon, when the female lights up to attract males.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="defense.jpg" alt="Defense" class="card-image">
+                    <h3>Defense</h3>
+                    <p>
+                        Some squid and small crustaceans use bioluminescent chemical mixtures or bacterial slurries in the same
+                        way as many squid use ink. A cloud of luminescent material is expelled, distracting or repelling a potential
+                        predator, while the animal escapes to safety.
+                    </p>
+                </div>
+
+                <div class="function-box">
+                    <img src="mimicry.jpg" alt="Mimicry" class="card-image">
+                    <h3>Mimicry</h3>
+                    <p>
+                        Bioluminescence is used by a variety of animals to mimic other species. The cookiecutter shark uses
+                        bioluminescence to camouflage its underside by counter-illumination, but a small patch remains dark,
+                        appearing as a small fish to lure larger predatory fish.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Applications -->
+    <div class="page" id="applications">
+        <div class="container">
+            <h2>Human Applications</h2>
+            <p>
+                Bioluminescent organisms are a target for many areas of research. Luciferase systems are widely used in
+                genetic engineering as reporter genes, and for biomedical research using bioluminescence imaging.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Discovery</div>
+                    <div class="timeline-content">
+                        <h3>Green Fluorescent Protein (1961)</h3>
+                        <p>
+                            Osamu Shimomura discovered and isolated green fluorescent protein (GFP) from the jellyfish
+                            Aequorea victoria. This groundbreaking discovery would later win the Nobel Prize in Chemistry
+                            in 2008, shared with Martin Chalfie and Roger Y. Tsien for their development of GFP as a tool
+                            for biological research.
+                        </p>
+                        <img src="lab.jpg" alt="Lab research" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Engineering</div>
+                    <div class="timeline-content">
+                        <h3>Genetic Applications (1986)</h3>
+                        <p>
+                            The firefly luciferase gene was first used for research using transgenic tobacco plants.
+                            This marked the beginning of widespread use of luciferase-based systems as reporter genes
+                            to track gene expression in real-time, revolutionizing molecular biology research.
+                        </p>
+                        <img src="plant.jpg" alt="Genetic engineering" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Medicine</div>
+                    <div class="timeline-content">
+                        <h3>Medical Research & Imaging</h3>
+                        <p>
+                            Bioluminescence imaging became widely adopted for non-invasive tracking of cellular processes
+                            and disease progression in living organisms. Researchers began exploring bioluminescent activated
+                            destruction as an experimental cancer treatment, opening new possibilities in targeted therapy.
+                        </p>
+                        <img src="medical.jpg" alt="Medical research" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Lighting</div>
+                    <div class="timeline-content">
+                        <h3>Sustainable Solutions (2016)</h3>
+                        <p>
+                            Glowee, a French company, started selling bioluminescent lights for shop fronts and street signs.
+                            This pioneering effort demonstrated that engineered bioluminescence could one day be used to
+                            reduce the need for traditional street lighting, offering an eco-friendly alternative.
+                        </p>
+                        <img src="lighting.jpg" alt="Sustainable lighting" class="timeline-image">
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Innovation</div>
+                    <div class="timeline-content">
+                        <h3>Glowing Plants (2020)</h3>
+                        <p>
+                            In April 2020, scientists successfully genetically engineered plants to glow more brightly
+                            using genes from the bioluminescent mushroom Neonothopanus nambi. These plants convert
+                            caffeic acid into luciferin, creating self-sustaining bioluminescent organisms.
+                        </p>
+                        <img src="plant.jpg" alt="Glowing plant" class="timeline-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+        <ul>
+            <li>
+                <a href="#intro" class="bottom-nav-link active">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    <span>Intro</span>
+                </a>
+            </li>
+            <li>
+                <a href="#organisms" class="bottom-nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Life</span>
+                </a>
+            </li>
+            <li>
+                <a href="#functions" class="bottom-nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <span>Function</span>
+                </a>
+            </li>
+            <li>
+                <a href="#applications" class="bottom-nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    <span>Uses</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <canvas id="touch-canvas"></canvas>
+
+    <script>
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Smooth scroll for nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = window.innerWidth <= 768 ? 60 : 70;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Bottom nav states
+        const sections = document.querySelectorAll('.page');
+        const bottomNavLinks = document.querySelectorAll('.bottom-nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            bottomNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Tap to expand each card
+        document.querySelectorAll('.organism-card, .function-box').forEach(card => {
+            card.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    this.classList.toggle('expanded');
+                }
+            });
+        });
+
+        const canvas = document.getElementById('touch-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = (Math.random() - 0.5) * 3;
+                this.speedY = (Math.random() - 0.5) * 3;
+                this.life = 1;
+                this.decay = Math.random() * 0.02 + 0.01;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= this.decay;
+                this.size *= 0.98;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = '#00d9ff';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#00d9ff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createParticles(x, y) {
+            for (let i = 0; i < 8; i++) {
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => p.life > 0);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        document.addEventListener('touchmove', (e) => {
+            if (window.innerWidth <= 768) {
+                const touch = e.touches[0];
+                createParticles(touch.clientX, touch.clientY);
+            }
+        });
+
+        document.addEventListener('touchstart', (e) => {
+            if (window.innerWidth <= 768) {
+                const touch = e.touches[0];
+                for (let i = 0; i < 15; i++) {
+                    createParticles(touch.clientX, touch.clientY);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
